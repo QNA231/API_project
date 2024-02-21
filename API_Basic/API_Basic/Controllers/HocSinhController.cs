@@ -19,9 +19,9 @@ namespace API_Basic.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetDsHocSinh()
+        public IActionResult GetDsHocSinh([FromQuery] string? keyword, [FromQuery] Pagination pagination)
         {
-            var dsHocSinh = hocSinhServices.GetDsHocSinh();
+            var dsHocSinh = hocSinhServices.GetDanhSachHocSinh(keyword, pagination);
             return Ok(dsHocSinh);
         }
 

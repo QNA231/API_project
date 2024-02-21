@@ -10,5 +10,6 @@ namespace API_Basic.IServices
         ErrorMessage XoaHocSinh(int HocSinhId);
         ErrorMessage ChuyenLopHocSinh(int HocSinhId, int lopMoiId);
         IEnumerable<HocSinh> GetDsHocSinh();
+        public PageResult<HocSinh> GetDanhSachHocSinh(string? keyword, Pagination pagination);
     }
 }

@@ -1,4 +1,5 @@
-﻿using ThemSuaXoaDuLieu.Constant;
+﻿using Microsoft.EntityFrameworkCore;
+using ThemSuaXoaDuLieu.Constant;
 using ThemSuaXoaDuLieu.Entities;
 using ThemSuaXoaDuLieu.IServices;
 
@@ -13,9 +14,38 @@ namespace ThemSuaXoaDuLieu.Services
             dbContext = new AppDbContext();
         }
 
-        public IEnumerable<HoaDon> GetDsHoaDon()
+        public IQueryable<HoaDon> LayHoaDon(string keyword, int? year = null, int? month = null, DateTime? tuNgay = null, DateTime? denNgay = null, int? giaTu = null, int? giaDen = null)
         {
-            return dbContext.HoaDon.AsQueryable();
+            var query = dbContext.HoaDon.Include(x => x.ChiTietHoaDons).OrderByDescending(x => x.ThoiGianTao).AsQueryable();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                query = query.Where(x => x.TenHoaDon.ToLower().Contains(keyword.ToLower()) || x.MaGiaoDich.ToLower().Contains(keyword.ToLower()));
+            }
+            if (year.HasValue)
+            {
+                query = query.Where(x => x.ThoiGianTao.Year == year);
+            }
+            if (month.HasValue)
+            {
+                query = query.Where(x => x.ThoiGianTao.Month == month);
+            }
+            if (tuNgay.HasValue)
+            {
+                query = query.Where(x => x.ThoiGianTao.Date >= tuNgay.Value.Date);
+            }
+            if (denNgay.HasValue)
+            {
+                query = query.Where(x => x.ThoiGianTao.Date <= denNgay.Value.Date);
+            }
+            if (giaTu.HasValue)
+            {
+                query = query.Where(x => x.TongTien >= giaTu);
+            }
+            if (giaDen.HasValue)
+            {
+                query = query.Where(x => x.TongTien <= giaDen);
+            }
+            return query;
         }
 
         public ErrorMessage SuaHoaDon(HoaDon hoaDon)

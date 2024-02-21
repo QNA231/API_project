@@ -19,12 +19,14 @@ namespace ThemSuaXoaDuLieu.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetDsHoaDon()
+        public IActionResult LayHoaDon(string? keyword, int? year = null, int? month = null, DateTime? tuNgay = null, DateTime? denNgay = null, int? giaTu = null, int? giaDen = null,[FromQuery] Pagination? pagination = null)
         {
-            var dsHoaDon = hoaDonServices.GetDsHoaDon();
-            return Ok(dsHoaDon);
+            var query = hoaDonServices.LayHoaDon(keyword, year, month, tuNgay, denNgay, giaTu, giaDen);
+            var hoaDons = PageResult<HoaDon>.ToPageResult(pagination, query).AsEnumerable();
+            pagination.TotalCount = hoaDons.Count();
+            var res = new PageResult<HoaDon>(pagination, hoaDons);
+            return Ok(res);
         }
-        //Checked
 
         [HttpPost("themHoaDonChoKhachHang")]
         public IActionResult ThemHoaDon([FromBody] HoaDon hoaDon)

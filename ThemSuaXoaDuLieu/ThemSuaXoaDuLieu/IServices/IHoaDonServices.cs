@@ -9,6 +9,6 @@ namespace ThemSuaXoaDuLieu.IServices
         public string TaoMaGiaoDich();
         ErrorMessage SuaHoaDon(HoaDon hoaDon);
         ErrorMessage XoaHoaDon(int hoaDonId);
-        IEnumerable<HoaDon> GetDsHoaDon();
+        public IQueryable<HoaDon> LayHoaDon(string keyword, int? year = null, int? month = null, DateTime? tuNgay = null, DateTime? denNgay = null, int? giaTu = null, int? giaDen = null);
     }
 }

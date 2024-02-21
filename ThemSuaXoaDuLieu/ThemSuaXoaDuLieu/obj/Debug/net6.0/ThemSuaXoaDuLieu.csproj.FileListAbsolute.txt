@@ -80,3 +80,7 @@ D:\C#\WEB API\ThemSuaXoaDuLieu\ThemSuaXoaDuLieu\obj\Debug\net6.0\refint\ThemSuaX
 D:\C#\WEB API\ThemSuaXoaDuLieu\ThemSuaXoaDuLieu\obj\Debug\net6.0\ThemSuaXoaDuLieu.pdb
 D:\C#\WEB API\ThemSuaXoaDuLieu\ThemSuaXoaDuLieu\obj\Debug\net6.0\ThemSuaXoaDuLieu.genruntimeconfig.cache
 D:\C#\WEB API\ThemSuaXoaDuLieu\ThemSuaXoaDuLieu\obj\Debug\net6.0\ref\ThemSuaXoaDuLieu.dll
+D:\C#\WEB API\ThemSuaXoaDuLieu\ThemSuaXoaDuLieu\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\C#\WEB API\ThemSuaXoaDuLieu\ThemSuaXoaDuLieu\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\C#\WEB API\ThemSuaXoaDuLieu\ThemSuaXoaDuLieu\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\C#\WEB API\ThemSuaXoaDuLieu\ThemSuaXoaDuLieu\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

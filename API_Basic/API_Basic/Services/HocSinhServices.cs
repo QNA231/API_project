@@ -1,6 +1,7 @@
 ﻿using API_Basic.Constant;
 using API_Basic.Entities;
 using API_Basic.IServices;
+using Microsoft.EntityFrameworkCore;
 
 namespace API_Basic.Services
 {
@@ -36,9 +37,21 @@ namespace API_Basic.Services
             return ErrorMessage.ThanhCong;
         }
 
+        public PageResult<HocSinh> GetDanhSachHocSinh(string? keyword, Pagination pagination)
+        {
+            var dsHS = DbContext.HocSinh.Include(x => x.Lop).AsQueryable();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                dsHS = dsHS.Where(x => x.HoTen.ToLower().Contains(keyword.ToLower()));
+            }
+            var result = PageResult<HocSinh>.ToPageResult(pagination, dsHS);
+            pagination.TotalCount = dsHS.Count();
+            return new PageResult<HocSinh>(pagination, result);
+        }
+
         public IEnumerable<HocSinh> GetDsHocSinh()
         {
-            return DbContext.HocSinh.AsQueryable();
+            throw new NotImplementedException();
         }
 
         public ErrorMessage SuaHocSinh(int HocSinhId)
